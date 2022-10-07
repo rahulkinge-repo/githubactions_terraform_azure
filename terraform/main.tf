@@ -22,10 +22,3 @@ resource "azurerm_resource_group" "tamops" {
   location = "eastus2"
 }
  
-#Create Virtual Network
-resource "azurerm_virtual_network" "vnet" {
-  name                = "tamops-vnet"
-  address_space       = ["192.168.0.0/16"]
-  location            = "eastus2"
-  resource_group_name = azurerm_resource_group.tamops.name
-}
