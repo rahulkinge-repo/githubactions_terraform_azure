@@ -28,6 +28,9 @@ resource "azurerm_kubernetes_cluster" "terraform-k8s" {
   linux_profile {
     admin_username = "ubuntu"
 
+    ssh_key {
+      key_data = secrets.SSH_KEY
+    }
   }
 
   default_node_pool {
