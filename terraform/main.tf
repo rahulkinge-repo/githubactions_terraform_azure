@@ -13,26 +13,34 @@ provider "azurerm" {
   features {}
 }
  
-data "azurerm_client_config" "current" {}
- 
-#Create Resource Group
-resource "azurerm_resource_group" "tamops" {
-  name     = "tamops"
-  location = "eastus2"
+resource "azurerm_resource_group" "resource_group" {
+  name     = "${var.resource_group}_${var.environment}"
+  location = var.location
 }
- 
-#Create Virtual Network
-resource "azurerm_virtual_network" "vnet" {
-  name                = "tamops-vnet"
-  address_space       = ["192.168.0.0/16"]
-  location            = "eastus2"
-  resource_group_name = azurerm_resource_group.tamops.name
+
+
+resource "azurerm_kubernetes_cluster" "terraform-k8s" {
+  name                = "${var.cluster_name}_${var.environment}"
+  location            = azurerm_resource_group.resource_group.location
+  resource_group_name = azurerm_resource_group.resource_group.name
+  dns_prefix          = var.dns_prefix
+
+  linux_profile {
+    admin_username = "ubuntu"
+
+  }
+
+  default_node_pool {
+    name            = "agentpool"
+    node_count      = var.node_count
+    vm_size         = "standard_b2ms"
+    # vm_size         = "standard_d2as_v5"      CHANGE IF AN ERROR ARISES 
+  }
+
+
+  tags = {
+    Environment = var.environment
+  }
 }
- 
-# Create Subnet
-resource "azurerm_subnet" "subnet" {
-  name                 = "subnet"
-  resource_group_name  = azurerm_resource_group.tamops.name
-  virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefix       = "192.168.0.0/24"
-}
+
+
