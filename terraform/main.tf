@@ -1,16 +1,15 @@
 terraform {
   backend "azurerm" {
     resource_group_name  = "k8s_state_storage_resource_group_dev"
-    storage_account_name = "terraformstatestoragecontainer"
-    container_name       = "terraformstatestoragecontainer"
-    key                  = "terraformstatestoragecontainer.tfstate"
+    storage_account_name = "rkterraformstatestorage"
+    container_name       = "tfstatecontainer"
+    key                  = "tfstatecontainer.tfstate"
   }
 }
  
 provider "azurerm" {
   # The "feature" block is required for AzureRM provider 2.x.
   # If you're using version 1.x, the "features" block is not allowed.
-  version = "~>2.0"
   features {}
 }
  
