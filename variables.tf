@@ -12,9 +12,8 @@ variable client_secret {
 }
 variable ssh_public_key {
     description = "SSH KEY "
-    type        = string
     sensitive   = true
-    default = file(azure_rsa.pub)
+    default = "azure_rsa.pub"
 }
 
 variable environment {
