@@ -1,14 +1,8 @@
-variable client_id { 
-    description = "Client ID"
-    type        = string
-    sensitive   = true
-    default = "azure"
+variable client_id {
+
 }
 variable client_secret {
-    description = "Client SECRET"
-    type        = string
-    sensitive   = true
-    default = "*****"
+
 }
 variable ssh_public_key {
     description = "SSH KEY "
