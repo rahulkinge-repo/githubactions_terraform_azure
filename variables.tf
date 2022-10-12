@@ -1,6 +1,21 @@
-variable client_id {}
-variable client_secret {}
-variable ssh_public_key {}
+variable client_id { 
+    description = "Client ID"
+    type        = string
+    sensitive   = true
+    default = "azure"
+}
+variable client_secret {
+    description = "Client SECRET"
+    type        = string
+    sensitive   = true
+    default = "*****"
+}
+variable ssh_public_key {
+    description = "SSH KEY "
+    type        = string
+    sensitive   = true
+    default = file(azure_rsa.pub)
+}
 
 variable environment {
     default = "dev"
