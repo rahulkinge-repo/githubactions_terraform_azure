@@ -1,4 +1,9 @@
 
+variable client_secret {
+    description = " client_secret "
+    sensitive   = true
+
+}
 
 terraform {
   backend "azurerm" {
