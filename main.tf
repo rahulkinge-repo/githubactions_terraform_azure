@@ -1,5 +1,4 @@
-variable "client_secret" {
-}
+
 
 terraform {
   backend "azurerm" {
