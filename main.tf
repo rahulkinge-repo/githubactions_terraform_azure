@@ -1,3 +1,6 @@
+variable "client_secret" {
+}
+
 terraform {
   backend "azurerm" {
     resource_group_name  = "k8s_state_storage_resource_group_dev"
@@ -42,7 +45,7 @@ resource "azurerm_kubernetes_cluster" "terraform-k8s" {
 
   service_principal {
     client_id     = "adda2eb3-58f6-45b6-993a-d3c81973e168"
-    client_secret = "${env.ARM_CLIENT_SECRET}"
+    client_secret = var.client_secret
   }
 
   tags = {
