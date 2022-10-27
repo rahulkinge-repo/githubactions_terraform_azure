@@ -4,6 +4,11 @@ variable ssh_public_key {
     default = "azure_rsa.pub"
 }
 
+variable client_secret {
+    description = "client secret"
+    sensitive   = true
+}
+
 variable environment {
     default = "dev"
 }
