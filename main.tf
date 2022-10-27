@@ -1,10 +1,4 @@
 
-variable client_secret {
-    description = " client_secret "
-    sensitive   = true
-
-}
-
 terraform {
   backend "azurerm" {
     resource_group_name  = "k8s_state_storage_resource_group_dev"
@@ -14,9 +8,17 @@ terraform {
   }
 }
  
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "=3.0.0"
+    }
+  }
+}
+
+# Configure the Microsoft Azure Provider
 provider "azurerm" {
-  # The "feature" block is required for AzureRM provider 2.x.
-  # If you're using version 1.x, the "features" block is not allowed.
   features {}
 }
  
