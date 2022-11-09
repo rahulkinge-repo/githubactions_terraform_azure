@@ -2,10 +2,10 @@
 terraform {
   backend "azurerm" {
     subscription_id = "a9f9fd7b-4578-420c-abe1-833dc95ab730"
-    resource_group_name  = "k8s_state_storage_resource_group_dev"
-    storage_account_name = "rkterraformstatestorage"
-    container_name       = "tftstatecontainer"
-    key                  = "tftstatecontainer.tfstate"
+    resource_group_name  = "terraform-backend-rg"
+    storage_account_name = "storageacctrk199991"
+    container_name       = "storageacctrangacontainer1"
+    key                  = "kubernetes-dev.tfstate"
   }
 }
  
